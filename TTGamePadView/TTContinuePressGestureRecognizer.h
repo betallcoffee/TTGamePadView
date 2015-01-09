@@ -12,9 +12,9 @@
 @interface TTContinuePressBound : NSObject
 
 @property (nonatomic, readonly) CGRect rect;
-@property (nonatomic, readonly) NSUInteger tag;
+@property (nonatomic, readonly) NSInteger tag;
 
-- (instancetype)initWith:(CGRect)rect andTag:(NSUInteger)tag;
+- (instancetype)initWithRect:(CGRect)rect andTag:(NSInteger)tag;
 
 @end
 
@@ -23,6 +23,7 @@
 @property (nonatomic, readonly) NSArray *pressBounds;
 
 - (void)addBound:(TTContinuePressBound *)bound;
+- (void)addBounds:(NSArray *)bounds;
 - (void)removeAllBounds;
 
 @end

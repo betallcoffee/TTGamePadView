@@ -11,7 +11,7 @@
 
 @implementation TTContinuePressBound
 
-- (instancetype)initWith:(CGRect)rect andTag:(NSUInteger)tag {
+- (instancetype)initWithRect:(CGRect)rect andTag:(NSInteger)tag {
     self = [super init];
     if (self) {
         _rect = rect;
@@ -51,6 +51,10 @@
     [self.bounds addObject:bound];
 }
 
+- (void)addBounds:(NSArray *)bounds {
+    [self.bounds addObjectsFromArray:bounds];
+}
+
 - (void)removeAllBounds {
     [self.bounds removeAllObjects];
 }
@@ -60,7 +64,7 @@
     for (UITouch *touch in touches) {
         CGPoint point = [touch locationInView:self.view];
         for (TTContinuePressBound *bound in self.bounds) {
-            NSLog(@"gesture began:%f, %f, %f, %f", bound.rect.origin.x, bound.rect.origin.y, bound.rect.size.width, bound.rect.size.height);
+//            NSLog(@"gesture began:%f, %f, %f, %f", bound.rect.origin.x, bound.rect.origin.y, bound.rect.size.width, bound.rect.size.height);
             if (CGRectContainsPoint(bound.rect, point)) {
                 [pressBounds addObject:bound];
             }
@@ -70,7 +74,7 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"gesture began: %d", [touches count]);
+//    NSLog(@"gesture began: %d", [touches count]);
     [self findPressBounds:touches withEvent:event];
     self.state = UIGestureRecognizerStateBegan;
     if (self.changeTimer) {
@@ -87,19 +91,19 @@
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"gesture move: %d", [touches count]);
+//    NSLog(@"gesture move: %d", [touches count]);
     [self findPressBounds:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"gesture end: %d", [touches count]);
+//    NSLog(@"gesture end: %d", [touches count]);
     [self.changeTimer invalidate];
     _pressBounds = nil;
     [self setState:UIGestureRecognizerStateRecognized];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSLog(@"gesture cancel: %d", [touches count]);
+//    NSLog(@"gesture cancel: %d", [touches count]);
     [self .changeTimer invalidate];
     _pressBounds = nil;
     [self setState:UIGestureRecognizerStateRecognized];

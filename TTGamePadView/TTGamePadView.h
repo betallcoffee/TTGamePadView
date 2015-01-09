@@ -20,6 +20,7 @@ typedef enum : NSUInteger {
  @brief 方向控制
  */
 typedef enum : NSUInteger {
+    eTTDirectionUpLeft,
     eTTDirectionUp,
     eTTDirectionUpRight,
     eTTDirectionRight,
@@ -27,8 +28,8 @@ typedef enum : NSUInteger {
     eTTDirectionDown,
     eTTDirectionDownLeft,
     eTTDirectionLeft,
-    eTTDirectionUpLef,
 } eTTDirection;
+
 
 /**
  @brief 按钮控制
@@ -43,6 +44,9 @@ typedef enum : NSUInteger {
     eTTPadButtonSelect,
     eTTPadButtonStart,
 } eTTPadButton;
+
+NSString *directionName(eTTDirection direction);
+NSString *padButtonName(eTTPadButton button);
 
 @class TTGamePadView;
 
