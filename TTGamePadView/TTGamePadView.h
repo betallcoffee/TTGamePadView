@@ -42,7 +42,6 @@ typedef enum : NSUInteger {
     eTTPadButtonZ,
     eTTPadButtonSelect,
     eTTPadButtonStart,
-    eTTPadButtonMenu,
 } eTTPadButton;
 
 @class TTGamePadView;

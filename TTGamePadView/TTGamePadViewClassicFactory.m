@@ -26,7 +26,6 @@
                          @(eTTPadButtonZ): @"six_z",
                          @(eTTPadButtonSelect): @"select",
                          @(eTTPadButtonStart): @"start",
-                         @(eTTPadButtonMenu): @"hand_menu",
                          };
     }
     return self;

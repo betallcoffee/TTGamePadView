@@ -10,9 +10,11 @@
 #import "TTGamePadViewFactory.h"
 #import "TTGamePadViewClassicFactory.h"
 #import "TTGamePadViewRockFactory.h"
+#import "TTContinuePressGestureRecognizer.h"
 
 @interface TTGamePadView ()
 
+@property (nonatomic, strong) TTContinuePressGestureRecognizer *gesture;
 @property (nonatomic, strong) id<TTGamePadViewFactory> factory;
 @property (nonatomic, strong) UIView<TTGamePadDirectionView> *directionView;
 @property (nonatomic, strong) UIButton *a;
@@ -33,6 +35,8 @@
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor redColor];
+        self.gesture = [[TTContinuePressGestureRecognizer alloc] initWithTarget:self action:@selector(responseForRockGesture:)];
+        [self addGestureRecognizer:self.gesture];
         _style = style;
         switch (_style) {
             case eTTPadStyleClassic:
@@ -46,6 +50,51 @@
     }
     return self;
 }
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.gesture removeAllBounds];
+    [self.gesture addBound:[[TTContinuePressBound alloc] initWith:self.directionView.frame andTag:0]];
+}
+
+#pragma mark touchs
+
+- (void)responseForRockGesture:(TTContinuePressGestureRecognizer *)gesture {
+    NSLog(@"responseForRockGesture: %@, %d", gesture, gesture.presses.count);
+}
+
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    NSLog(@"began: %d", [touches count]);
+//	UITouch *touch = [touches anyObject];
+//	CGPoint point = [touch locationInView:self];
+//}
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    NSLog(@"move: %d", [touches count]);
+//	UITouch *touch = [touches anyObject];
+//	CGPoint point = [touch locationInView:self];
+////	CGRect frame = [_dPad frame];
+////
+////	if (CGRectContainsPoint(frame, point))
+////	{
+////		[_dPad touchesMoved:touches withEvent:event];
+////	}
+//}
+//
+//- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//	NSLog(@"cancel: %d", [touches count]);
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//	NSLog(@"end: %d", [touches count]);
+//}
+
+
+#pragma mark build view
 
 - (void)buildView {
     [self buildBackgroundView];
@@ -331,6 +380,5 @@
                                                      attribute:NSLayoutAttributeHeight
                                                     multiplier:1.0 constant:0]];
 }
-
 
 @end
