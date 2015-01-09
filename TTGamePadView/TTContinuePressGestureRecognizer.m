@@ -56,17 +56,17 @@
 }
 
 - (void)findPressBounds:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSMutableArray *presses = [[NSMutableArray alloc] init];
+    NSMutableArray *pressBounds = [[NSMutableArray alloc] init];
     for (UITouch *touch in touches) {
         CGPoint point = [touch locationInView:self.view];
         for (TTContinuePressBound *bound in self.bounds) {
             NSLog(@"gesture began:%f, %f, %f, %f", bound.rect.origin.x, bound.rect.origin.y, bound.rect.size.width, bound.rect.size.height);
             if (CGRectContainsPoint(bound.rect, point)) {
-                [presses addObject:bound];
+                [pressBounds addObject:bound];
             }
         }
     }
-    _presses = [NSArray arrayWithArray:presses];
+    _pressBounds = [NSArray arrayWithArray:pressBounds];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -94,14 +94,14 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"gesture end: %d", [touches count]);
     [self.changeTimer invalidate];
-    _presses = nil;
+    _pressBounds = nil;
     [self setState:UIGestureRecognizerStateRecognized];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     NSLog(@"gesture cancel: %d", [touches count]);
     [self .changeTimer invalidate];
-    _presses = nil;
+    _pressBounds = nil;
     [self setState:UIGestureRecognizerStateRecognized];
 }
 

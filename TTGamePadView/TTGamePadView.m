@@ -54,45 +54,63 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self.gesture removeAllBounds];
-    [self.gesture addBound:[[TTContinuePressBound alloc] initWith:self.directionView.frame andTag:0]];
+    [self.gesture addBound:[[TTContinuePressBound alloc] initWith:self.a.frame andTag:eTTPadButtonA]];
+    [self.gesture addBound:[[TTContinuePressBound alloc] initWith:self.b.frame andTag:eTTPadButtonB]];
+    [self.gesture addBound:[[TTContinuePressBound alloc] initWith:self.c.frame andTag:eTTPadButtonC]];
+    [self.gesture addBound:[[TTContinuePressBound alloc] initWith:self.x.frame andTag:eTTPadButtonX]];
+    [self.gesture addBound:[[TTContinuePressBound alloc] initWith:self.y.frame andTag:eTTPadButtonY]];
+    [self.gesture addBound:[[TTContinuePressBound alloc] initWith:self.z.frame andTag:eTTPadButtonZ]];
 }
 
 #pragma mark touchs
 
 - (void)responseForRockGesture:(TTContinuePressGestureRecognizer *)gesture {
-    NSLog(@"responseForRockGesture: %@, %d", gesture, gesture.presses.count);
+    NSLog(@"responseForRockGesture: %@, %d", gesture, gesture.pressBounds.count);
+    [self resetAllPadButton];
+    
+    for (TTContinuePressBound *bound in gesture.pressBounds) {
+        if ([self selectedPadButton:bound]) {
+            if (self.delegate) {
+                [self.delegate TTGamePadView:self button:bound.tag];
+            }
+        }
+    }
 }
 
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    NSLog(@"began: %d", [touches count]);
-//	UITouch *touch = [touches anyObject];
-//	CGPoint point = [touch locationInView:self];
-//}
-//
-//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    NSLog(@"move: %d", [touches count]);
-//	UITouch *touch = [touches anyObject];
-//	CGPoint point = [touch locationInView:self];
-////	CGRect frame = [_dPad frame];
-////
-////	if (CGRectContainsPoint(frame, point))
-////	{
-////		[_dPad touchesMoved:touches withEvent:event];
-////	}
-//}
-//
-//- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//	NSLog(@"cancel: %d", [touches count]);
-//}
-//
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//	NSLog(@"end: %d", [touches count]);
-//}
+- (void)resetAllPadButton {
+    self.a.selected = NO;
+    self.b.selected = NO;
+    self.c.selected = NO;
+    self.x.selected = NO;
+    self.y.selected = NO;
+    self.z.selected = NO;
+}
 
+- (BOOL)selectedPadButton:(TTContinuePressBound *)bound {
+    switch (bound.tag) {
+        case eTTPadButtonA:
+            self.a.selected = YES;
+            return YES;
+        case eTTPadButtonB:
+            self.b.selected = YES;
+            return YES;
+        case eTTPadButtonC:
+            self.c.selected = YES;
+            return YES;
+        case eTTPadButtonX:
+            self.x.selected = YES;
+            return YES;
+        case eTTPadButtonY:
+            self.y.selected = YES;
+            return YES;
+        case eTTPadButtonZ:
+            self.z.selected = YES;
+            return YES;
+        default:
+            break;
+    }
+    return NO;
+}
 
 #pragma mark build view
 

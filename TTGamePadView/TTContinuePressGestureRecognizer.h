@@ -20,7 +20,7 @@
 
 @interface TTContinuePressGestureRecognizer : UIGestureRecognizer
 
-@property (nonatomic, readonly) NSArray *presses;
+@property (nonatomic, readonly) NSArray *pressBounds;
 
 - (void)addBound:(TTContinuePressBound *)bound;
 - (void)removeAllBounds;

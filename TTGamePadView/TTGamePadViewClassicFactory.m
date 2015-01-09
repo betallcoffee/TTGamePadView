@@ -44,7 +44,7 @@
     UIImage *press = [UIImage imageNamed:[NSString stringWithFormat:@"gamepad_btn_%@_p.png", self.buttonImage[@(padButton)]]];
     UIButton *button = [[UIButton alloc] init];
     [button setImage:normal forState:UIControlStateNormal];
-    [button setImage:press forState:UIControlStateHighlighted];
+    [button setImage:press forState:UIControlStateSelected];
     return button;
 }
 
