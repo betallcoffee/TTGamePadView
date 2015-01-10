@@ -81,7 +81,7 @@
     if (self.changeTimer) {
         [self.changeTimer invalidate];
     }
-    self.changeTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
+    self.changeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1
                                                         target:self
                                                       selector:@selector(change)
                                                       userInfo:nil repeats:YES];

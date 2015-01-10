@@ -103,6 +103,14 @@ NSString *padButtonName(eTTPadButton button) {
     }
 }
 
+#pragma mark response the button press
+
+- (void)pressButton:(UIButton *)sender {
+    if (self.delegate != nil) {
+        [self.delegate TTGamePadView:self button:sender.tag];
+    }
+}
+
 #pragma mark build view
 
 - (void)buildView {
@@ -154,6 +162,8 @@ NSString *padButtonName(eTTPadButton button) {
 - (void)buildButtonA {
     _a = [_factory padButtonView:eTTPadButtonA];
     _a.translatesAutoresizingMaskIntoConstraints = NO;
+    _a.tag = eTTPadButtonA;
+    [_a addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_a];
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_a);
@@ -182,6 +192,8 @@ NSString *padButtonName(eTTPadButton button) {
 - (void)buildButtonB {
     _b = [_factory padButtonView:eTTPadButtonB];
     _b.translatesAutoresizingMaskIntoConstraints = NO;
+    _b.tag = eTTPadButtonB;
+    [_b addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_b];
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_b);
@@ -210,6 +222,8 @@ NSString *padButtonName(eTTPadButton button) {
 - (void)buildButtonC {
     _c = [_factory padButtonView:eTTPadButtonC];
     _c.translatesAutoresizingMaskIntoConstraints = NO;
+    _c.tag = eTTPadButtonC;
+    [_c addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_c];
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_c);
@@ -238,6 +252,8 @@ NSString *padButtonName(eTTPadButton button) {
 - (void)buildButtonX {
     _x = [_factory padButtonView:eTTPadButtonX];
     _x.translatesAutoresizingMaskIntoConstraints = NO;
+    _x.tag = eTTPadButtonX;
+    [_x addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_x];
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_x);
@@ -266,6 +282,8 @@ NSString *padButtonName(eTTPadButton button) {
 - (void)buildButtonY {
     _y = [_factory padButtonView:eTTPadButtonY];
     _y.translatesAutoresizingMaskIntoConstraints = NO;
+    _y.tag = eTTPadButtonY;
+    [_y addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_y];
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_y);
@@ -294,6 +312,8 @@ NSString *padButtonName(eTTPadButton button) {
 - (void)buildButtonZ {
     _z = [_factory padButtonView:eTTPadButtonZ];
     _z.translatesAutoresizingMaskIntoConstraints = NO;
+    _z.tag = eTTPadButtonZ;
+    [_z addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_z];
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_z);
@@ -322,6 +342,8 @@ NSString *padButtonName(eTTPadButton button) {
 - (void)buildSelect {
     _select = [_factory padButtonView:eTTPadButtonSelect];
     _select.translatesAutoresizingMaskIntoConstraints = NO;
+    _select.tag = eTTPadButtonSelect;
+    [_select addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_select];
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_select);
@@ -358,6 +380,8 @@ NSString *padButtonName(eTTPadButton button) {
 - (void)buildStart {
     _start = [_factory padButtonView:eTTPadButtonStart];
     _start.translatesAutoresizingMaskIntoConstraints = NO;
+    _start.tag = eTTPadButtonStart;
+    [_start addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_start];
     
     NSDictionary *viewDict = NSDictionaryOfVariableBindings(_start);

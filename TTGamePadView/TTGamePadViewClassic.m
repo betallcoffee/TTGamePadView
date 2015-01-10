@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIImageView *background;
 @property (nonatomic, strong) TTContinuePressGestureRecognizer *gesture;
+@property (nonatomic, strong) NSDictionary *directions;
 
 @end
 
@@ -25,6 +26,15 @@
     self = [super init];
     if (self) {
         // Initialization code
+        self.directions = @{@(eTTDirectionUpLeft):@{@"mx":@(0), @"my":@(0), @"img":@"plt"},
+                            @(eTTDirectionUp):@{@"mx":@(1), @"my":@(0), @"img":@"pt"},
+                            @(eTTDirectionUpRight):@{@"mx":@(2), @"my":@(0), @"img":@"prt"},
+                            @(eTTDirectionRight):@{@"mx":@(2), @"my":@(1), @"img":@"pr"},
+                            @(eTTDirectionDownRight):@{@"mx":@(2), @"my":@(2), @"img":@"prd"},
+                            @(eTTDirectionDown):@{@"mx":@(1), @"my":@(2), @"img":@"pd"},
+                            @(eTTDirectionDownLeft):@{@"mx":@(0), @"my":@(2), @"img":@"pld"},
+                            @(eTTDirectionLeft):@{@"mx":@(0), @"my":@(1), @"img":@"pl"}};
+        
         self.gesture = [[TTContinuePressGestureRecognizer alloc] initWithTarget:self action:@selector(responseForRockGesture:)];
         [self addGestureRecognizer:self.gesture];
         _background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gamepad_hand_direction_default.png"]];
@@ -58,12 +68,9 @@
     height = self.bounds.size.height / 3;
     CGRect rectOrigin = CGRectMake(0, 0, width, height);
     
-    NSDictionary *directions = @{@(eTTDirectionUpLeft):@{@"mx":@(0), @"my":@(0)}, @(eTTDirectionUp):@{@"mx":@(1), @"my":@(0)},
-                                 @(eTTDirectionUpRight):@{@"mx":@(2), @"my":@(0)}, @(eTTDirectionRight):@{@"mx":@(2), @"my":@(1)},
-                                 @(eTTDirectionDownRight):@{@"mx":@(2), @"my":@(2)}, @(eTTDirectionDown):@{@"mx":@(1), @"my":@(2)},
-                                 @(eTTDirectionDownLeft):@{@"mx":@(0), @"my":@(2)}, @(eTTDirectionLeft):@{@"mx":@(0), @"my":@(1)}};
-    NSMutableArray *bounds = [[NSMutableArray alloc] initWithCapacity:directions.count];
-    [directions enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    
+    NSMutableArray *bounds = [[NSMutableArray alloc] initWithCapacity:self.directions.count];
+    [self.directions enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         *stop = NO;
         NSNumber *direction = (NSNumber *)key;
         NSDictionary *value = (NSDictionary *)obj;
@@ -81,10 +88,18 @@
 #pragma mark touchs
 
 - (void)responseForRockGesture:(TTContinuePressGestureRecognizer *)gesture {
+    if (gesture.state != UIGestureRecognizerStateChanged) {
+        [self.background setImage:[UIImage imageNamed:@"gamepad_hand_direction_default.png"]];
+        return;
+    }
     for (TTContinuePressBound *bound in gesture.pressBounds) {
         NSLog(@"responseForRockGesture: press: %d", bound.tag);
         if([self pressDirection:bound]){
             NSLog(@"responseForRockGesture: direction %@", directionName(bound.tag));
+            NSDictionary *direction = (NSDictionary *)self.directions[@(bound.tag)];
+            NSString *suffix = (NSString *)direction[@"img"];
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"gamepad_hand_direction_%@.png", suffix]];
+            [self.background setImage:image];
             if (self.delegate != nil) {
                 [self.delegate TTGamePadDirectionView:self direction:bound.tag];
             }
