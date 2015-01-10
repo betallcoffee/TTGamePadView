@@ -7,46 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-/**
- @brief 面板的样式
- */
-typedef enum : NSUInteger {
-    eTTPadStyleClassic, /**< @brief 经典样式 */
-    eTTPadStyleRock, /**< @brief 摇杆样式 */
-} eTTPadStyle;
-
-/**
- @brief 方向控制
- */
-typedef enum : NSUInteger {
-    eTTDirectionUpLeft,
-    eTTDirectionUp,
-    eTTDirectionUpRight,
-    eTTDirectionRight,
-    eTTDirectionDownRight,
-    eTTDirectionDown,
-    eTTDirectionDownLeft,
-    eTTDirectionLeft,
-} eTTDirection;
-
-
-/**
- @brief 按钮控制
- */
-typedef enum : NSUInteger {
-    eTTPadButtonA,
-    eTTPadButtonB,
-    eTTPadButtonC,
-    eTTPadButtonX,
-    eTTPadButtonY,
-    eTTPadButtonZ,
-    eTTPadButtonSelect,
-    eTTPadButtonStart,
-} eTTPadButton;
-
-NSString *directionName(eTTDirection direction);
-NSString *padButtonName(eTTPadButton button);
+#import "TTGamePadViewFactory.h"
 
 @class TTGamePadView;
 
@@ -67,7 +28,8 @@ NSString *padButtonName(eTTPadButton button);
 
 @end
 
-@interface TTGamePadView : UIView
+@interface TTGamePadView : UIView<TTGamePadDirectionViewDelegate>
+
 @property (nonatomic, assign) id<TTGamePadViewDelegate> delegate; /**< @brief TTGamePadView delegate */
 @property (nonatomic, assign) eTTPadStyle style; /**< @brief TTGamePadView 面板样式 */
 

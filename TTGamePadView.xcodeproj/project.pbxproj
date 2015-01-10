@@ -20,7 +20,7 @@
 		EC2C21D71A5BFCDC00C5538D /* TTGamePadViewClassic.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C21D61A5BFCDC00C5538D /* TTGamePadViewClassic.m */; };
 		EC33C1051A5E7A4100D56DC9 /* TTGamePadViewRockFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33C1041A5E7A4100D56DC9 /* TTGamePadViewRockFactory.m */; };
 		EC33C1081A5E7A6200D56DC9 /* TTGamePadViewRock.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33C1071A5E7A6200D56DC9 /* TTGamePadViewRock.m */; };
-		EC46F29E1A5FBC8C0090A11A /* TTContinuePressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC46F29D1A5FBC8C0090A11A /* TTContinuePressGestureRecognizer.m */; };
+		EC8C69971A60FD7B00161BE6 /* TTContinuePressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8C69961A60FD7B00161BE6 /* TTContinuePressGestureRecognizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,8 +98,6 @@
 		EC33C14B1A5E803A00D56DC9 /* gamepad_hand_rocker_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamepad_hand_rocker_ball.png; sourceTree = "<group>"; };
 		EC33C14C1A5E803A00D56DC9 /* gamepad_hand_rocker_bg_paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamepad_hand_rocker_bg_paper.png; sourceTree = "<group>"; };
 		EC33C14D1A5E803A00D56DC9 /* gamepad_hand_rocker_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamepad_hand_rocker_bg.png; sourceTree = "<group>"; };
-		EC46F29C1A5FBC8C0090A11A /* TTContinuePressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTContinuePressGestureRecognizer.h; sourceTree = "<group>"; };
-		EC46F29D1A5FBC8C0090A11A /* TTContinuePressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTContinuePressGestureRecognizer.m; sourceTree = "<group>"; };
 		EC73A0341A5D527A00DBFFED /* gamepad_bg_hand.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gamepad_bg_hand.jpg; sourceTree = "<group>"; };
 		EC73A0591A5D591800DBFFED /* gamepad_btn_hand_menu_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamepad_btn_hand_menu_n.png; sourceTree = "<group>"; };
 		EC73A05B1A5D591800DBFFED /* gamepad_btn_select_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamepad_btn_select_n.png; sourceTree = "<group>"; };
@@ -119,6 +117,8 @@
 		EC73A0841A5E1B6800DBFFED /* gamepad_btn_six_y_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamepad_btn_six_y_p.png; sourceTree = "<group>"; };
 		EC73A0851A5E1B6800DBFFED /* gamepad_btn_six_z_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamepad_btn_six_z_n.png; sourceTree = "<group>"; };
 		EC73A0861A5E1B6800DBFFED /* gamepad_btn_six_z_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamepad_btn_six_z_p.png; sourceTree = "<group>"; };
+		EC8C69951A60FD7B00161BE6 /* TTContinuePressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTContinuePressGestureRecognizer.h; sourceTree = "<group>"; };
+		EC8C69961A60FD7B00161BE6 /* TTContinuePressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTContinuePressGestureRecognizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +176,8 @@
 		EC2C21AD1A5BC87100C5538D /* TTGamePadView */ = {
 			isa = PBXGroup;
 			children = (
-				EC46F29C1A5FBC8C0090A11A /* TTContinuePressGestureRecognizer.h */,
-				EC46F29D1A5FBC8C0090A11A /* TTContinuePressGestureRecognizer.m */,
+				EC8C69951A60FD7B00161BE6 /* TTContinuePressGestureRecognizer.h */,
+				EC8C69961A60FD7B00161BE6 /* TTContinuePressGestureRecognizer.m */,
 				EC2C21DA1A5D117A00C5538D /* Resources */,
 				EC2C21AE1A5BC87100C5538D /* Supporting Files */,
 				EC2C21B01A5BC87100C5538D /* TTGamePadView.h */,
@@ -359,7 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC46F29E1A5FBC8C0090A11A /* TTContinuePressGestureRecognizer.m in Sources */,
+				EC8C69971A60FD7B00161BE6 /* TTContinuePressGestureRecognizer.m in Sources */,
 				EC33C1081A5E7A6200D56DC9 /* TTGamePadViewRock.m in Sources */,
 				EC2C21D71A5BFCDC00C5538D /* TTGamePadViewClassic.m in Sources */,
 				EC2C21D41A5BFC0F00C5538D /* TTGamePadViewClassicFactory.m in Sources */,
